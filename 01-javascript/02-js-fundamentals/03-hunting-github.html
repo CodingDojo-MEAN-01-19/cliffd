@@ -1,1 +1,19 @@
-// 1 hour
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("button").click(function() {
+            $.get("https://api.github.com/users/cduffey", function(data){ $("p").text(data.login); })
+        });
+    });
+</script>
+</head>
+<body>
+
+<button>Get Github Name</button>
+<p></p>
+
+</body>
+</html>
