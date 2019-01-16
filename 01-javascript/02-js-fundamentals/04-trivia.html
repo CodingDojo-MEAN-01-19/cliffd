@@ -1,1 +1,85 @@
 <!-- 2 hours -->
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    
+
+    $(document).ready(function(){
+        $("#wrapper").append("<div id='col1' class='col'></div>");
+        $("#wrapper").append("<div id='col2' class='col'></div>");
+        $("#wrapper").append("<div id='col3' class='col'></div>");
+
+        $("button").click(function() {
+            $.get("https://opentdb.com/api.php?amount=3&category=20&type=boolean", function(data) { 
+                
+                var mythology = data.results;
+                console.log(mythology);
+                $("#col1").append("<div class='title'>Mythology</div>");
+                for(let i = 0; i < 3; i++) {
+                    $("#col1").append("<div class='questions'></div>");
+                    $("#col1 .questions").append("<div class='text'>Question: " + mythology[i].question + "</div>");
+                    $("#col1 .questions").append("<div class='text'>Answer: " + mythology[i].correct_answer + "</div>");
+
+                    var incorrect = "";
+                    for(let j = 0; j < mythology[i].incorrect_answers.length; j++) {
+                        incorrect += mythology[i].incorrect_answers[j] + " ";
+                    }
+                    console.log(incorrect)
+                    $("#col1 .questions").append("<div class='text'>Incorrect answer(s):" + incorrect +"</div>");
+                } 
+            
+            });
+
+            $.get("https://opentdb.com/api.php?amount=3&category=21&type=boolean", function(data){ 
+
+                var sports = data.results;
+                $("#col2").append("<div class='title'>Sports</div>");
+                for(let i = 0; i < 3; i++) {
+                    $("#col2").append("<div class='questions'></div>");
+                    $("#col2 .questions").append("<div class='text'>Question: " + sports[i].question +"</div>");
+                    $("#col2 .questions").append("<div class='text'>Answer: " + sports[i].correct_answer +"</div>");
+
+                    var incorrect = "";
+                    for(let j = 0; j < sports[i].incorrect_answers.length; j++) {
+                        incorrect += sports[i].incorrect_answers[j] + " ";
+                    }
+                    $("#col2 .questions").append("<div class='text'>Incorrect answer(s):" + incorrect +"</div>");
+                } 
+
+            });
+            
+            $.get("https://opentdb.com/api.php?amount=3&category=22&type=boolean", function(data){ 
+                
+                var geography = data.results;
+                $("#col3").append("<div class='title'>Geography</div>");
+                for(let i = 0; i < 3; i++) {
+                    $("#col3").append("<div class='questions'></div>");
+                    $("#col3 .questions").append("<div class='text'>Question: " + geography[i].question +"</div>");
+                    $("#col3 .questions").append("<div class='text'>Answer: " + geography[i].correct_answer +"</div>");
+
+                    var incorrect = "";
+                    for(let j = 0; j < geography[i].incorrect_answers.length; j++) {
+                        incorrect += geography[i].incorrect_answers[j] + " ";
+                    }
+                    $("#col3 .questions").append("<div class='text'>Incorrect answer(s):" + incorrect +"</div>");
+                }
+             });
+
+        }); 
+
+    });
+
+</script>
+</head>
+<body>
+
+<button>Get New Questions</button>
+
+<div id="wrapper">
+
+</div>
+
+</body>
+</html>
