@@ -13,16 +13,23 @@
 
 <script> 
     var $Dojo = (function() {  
-        var MyConstructor = function(){ 
-            this.click = function(){ console.log("Click!"); }; 
-            this.hover = function(){ console.log("Hover!"); }; 
+        function create_object(id) {       
+            this.click = function(callback){ document.getElementById(id).addEventListener("click", callback) }; 
+            this.hover = function(callback_over, callback_out) { 
+                document.getElementById(id).addEventListener("mouseover", callback_over);
+                document.getElementById(id).addEventListener("mouseout", callback_out);
+            };         
         } 
+
+        function object_factory(id) {
+            return new create_object(id);
+        }
         
-        return new MyConstructor(); 
+        return object_factory; 
     })(); 
 
-    $Dojo.click();
-    $Dojo.hover();    
+    $Dojo("my_button").click(function() { console.log("Click!"); });
+    $Dojo("my_button").hover(function() { console.log("Over!"); }, function() { console.log("Out!"); });    
 </script>
 </body>
 </html>
