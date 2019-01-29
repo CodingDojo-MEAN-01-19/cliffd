@@ -1,0 +1,57 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div {
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+
+img {
+    display: block;
+    width: 300px;
+    margin: 20px;
+    margin-left: 145px;
+}
+
+#wrapper {
+    width: 600px;
+}
+
+#title {
+    background-color: blueviolet;
+    font-size: 24pt;
+    height: 60px;
+    padding-top: 15px;
+}
+
+#food {
+    background-color: rgb(199, 164, 231);
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: left;
+    font-size: 18pt;
+}
+
+#age {
+    background-color: rgb(171, 98, 235);
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: left;
+    font-size: 18pt;
+}
+
+#sleep {
+    background-color: rgb(142, 29, 235);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: left;
+    font-size: 18pt;
+}
+
+ul li {
+    font-size: 12pt;
+}

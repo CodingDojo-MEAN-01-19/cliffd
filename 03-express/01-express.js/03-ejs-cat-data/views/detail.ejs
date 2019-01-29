@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Details Page</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="title">Details page for <%= details.name %></div>
+        <img src="images/<%= details.name %>.jpg" alt="kitty pic">
+        <div id="food">Favorite Food: <%= details.food %></div>  
+        <div id="age">Age: <%= details.age %></div>  
+        <div id="sleep">
+            Sleeping Spots: 
+            <ul>
+                <% for (var i in details.sleeping_spots) { %>
+                    <li><%= details.sleeping_spots[i]; %></li>
+                <% } %>
+            </ul>
+        </div>        
+    </div>
+</body>
+</html>
