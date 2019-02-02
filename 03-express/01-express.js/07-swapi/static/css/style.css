@@ -1,0 +1,25 @@
+div {
+    display: inline-block;
+}
+
+#wrapper{
+    text-align: center;
+    background-color: bisque;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    padding: 20px;
+    margin: 25px;
+}
+
+#data {
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    padding: 5px;
+    min-height: 200px;
+    margin: 10px;
+}

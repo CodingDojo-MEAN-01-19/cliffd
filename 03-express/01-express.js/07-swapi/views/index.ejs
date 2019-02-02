@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Express with AJAX</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('#people').click(function(){    
+                $.get('/people', function(data){
+                    // log the data to be sure we have it before we dive into manipulating the DOM
+                    console.log("got the data", data);
+                    $('#data').empty();
+                    for(let i in data.results) {
+                        $('#data').append(data.results[i].name + '<br>');
+                    }
+                    
+                    $('#previous').attr("location", "/people/");
+                    if(data.previous != null) {
+                        $('#previous').attr("page", data.previous);
+                    }
+                    else {
+                        $('#previous').attr("page", "0");
+                    }
+
+                    $('#next').attr("location", "/people/");
+                    if(data.next != null) {
+                        $('#next').attr("page", data.next);
+                    }
+                    else {
+                        $('#next').attr("page", "0");
+                    }
+
+                    $('#all').text("Get all " + data.count + " People");
+                    $('#all').attr("location", "/people/");
+                }, 'json');
+            });
+
+            $('#planets').click(function(){
+                $.get('/planets', function(data){
+                    // log the data to be sure we have it before we dive into manipulating the DOM
+                    console.log("got the data", data);
+                    $('#data').empty();
+                    for(let i in data.results) {
+                        $('#data').append(data.results[i].name + '<br>');
+                    }
+                    
+                    $('#previous').attr("location", "/planets/");
+                    if(data.previous != null) {
+                        $('#previous').attr("page", data.previous);
+                    }
+                    else {
+                        $('#previous').attr("page", "0");
+                    }
+
+                    $('#next').attr("location", "/planets/");
+                    if(data.next != null) {
+                        $('#next').attr("page", data.next);
+                    }
+                    else {
+                        $('#next').attr("page", "0");
+                    }
+
+                    $('#all').text("Get all " + data.count + " Planets");
+                    $('#all').attr("location", "/planets/");
+                }, 'json');
+            });
+
+            $('#next').click(function(){
+                if($('#next').attr('page') != "0") {
+                    var url = $('#next').attr('location') + $('#next').attr('page');
+
+                    $.get(url, function(data) {
+                        console.log("got the data", data);
+                        $('#data').empty();
+                        for(let i in data.results) {
+                            $('#data').append(data.results[i].name + '<br>');
+                        }
+                        
+                        if(data.previous != null) {
+                            $('#previous').attr("page", data.previous);
+                        }
+                        else {
+                            $('#previous').attr("page", "0");
+                        }
+
+                        if(data.next != null) {
+                            $('#next').attr("page", data.next);
+                        }
+                        else {
+                            $('#next').attr("page", "0");
+                        }
+
+                    }, 'json');
+                }
+            });
+
+            $('#previous').click(function(){
+                if($('#previous').attr('page') != "0") {
+                    var url = $('#previous').attr('location') + $('#previous').attr('page');
+
+                    $.get(url, function(data) {
+                        console.log("got the data", data);
+                        $('#data').empty();
+                        for(let i in data.results) {
+                            $('#data').append(data.results[i].name + '<br>');
+                        }
+                        
+                        if(data.previous != null) {
+                            $('#previous').attr("page", data.previous);
+                        }
+                        else {
+                            $('#previous').attr("page", "0");
+                        }
+
+                        if(data.next != null) {
+                            $('#next').attr("page", data.next);
+                        }
+                        else {
+                            $('#next').attr("page", "0");
+                        }
+
+                    }, 'json');
+                }
+            });
+
+            $('#all').click(function(){          
+                $.get($('#all').attr('location') + 'all', function(data){
+                    $('#data').empty();
+                    $('#next').attr("page", "0");
+                    $('#next').attr("page", "0");
+
+                    for(i in data) {
+                        for(j in data[i].results){
+                            $('#data').append(data[i].results[j].name + '<br>');
+                        }
+                    }
+                    console.log(data);
+                    
+                }, 'json');
+            });
+
+        });
+    </script>
+  </head>
+  <body>
+
+    <div id="wrapper">
+        <h1>Star Wars Wiki</h1>
+        <h2>What would you like to know more about?</h2>
+        <div id="content">
+            <button id="people" type="button" class="btn btn-primary">People</button>
+            <button id="planets" type="button" class="btn btn-primary">Planets</button>
+            <div class="col-md-10" id="data">
+                
+            </div>
+
+            <a name="" id="previous" class="btn btn-a" href="#" role="button">Previous 10</a>
+            <a name="" id="all" class="btn btn-a" href="#" role="button"></a>
+            <a name="" id="next" class="btn btn-a" href="#" role="button">Next 10</a>
+        </div>
+
+    </div>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
