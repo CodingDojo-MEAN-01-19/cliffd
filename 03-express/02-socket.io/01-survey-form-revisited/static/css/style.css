@@ -1,0 +1,13 @@
+#results {
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    background-color: green;
+    width: 900px;
+    min-height: 200px;
+    display: none;
+}
+
+#form_window {
+    width: 900px;
+}

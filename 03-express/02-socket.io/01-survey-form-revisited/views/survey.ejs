@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Survey</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var socket = io();
+
+            socket.on('updated_message', function(data) {
+                $('#results').show();
+                $('#results').empty();
+                $('#results').append("<p>" + data.msg + ".</p>");
+            });
+
+            socket.on('random_number', function(data) {
+                $('#results').append("<p>Your lucky number emitted by the server is" + data.number + ".</p>");
+            });
+
+            $('#submit').click(function() {
+                socket.emit('posting_form', {name: $('#name').val(), location: $('#location').val(), language: $('#language').val(), comment: $('#comment').val() });
+            }); 
+
+        });
+    </script>
+
+  </head>
+  <body>
+    <div id="results"></div>
+    
+    <div id="form_window">
+        <div class="form-group">
+            <label for="">Name:</label>
+            <input type="text" class="form-control" name="name" id="name">
+        </div>
+
+        <div class="form-group">
+            <label for="">Dojo Location:</label>
+            <select class="form-control" name="location" id="location">
+                <option>Athens</option>
+                <option>Atlanta</option>
+                <option>Washington</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="">Favorite Language:</label>
+            <select class="form-control" name="language" id="language">
+                <option>Javascript</option>
+                <option>Java</option>
+                <option>Pascal</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="">Comment (optional):</label>
+            <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
+        </div>
+
+        <button id="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
