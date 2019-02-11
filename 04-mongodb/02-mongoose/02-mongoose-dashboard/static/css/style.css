@@ -1,0 +1,16 @@
+#wrapper {
+    border-style: solid;
+    border-color: blue;
+    border-width: 3px;
+    border-radius: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: 25px;  
+    text-align: center;
+}
+
+form,p { 
+    text-align: left;
+}

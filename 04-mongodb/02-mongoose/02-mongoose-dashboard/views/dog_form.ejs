@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Page 1</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+  <body>
+    <div id="wrapper" class="col-md-4">
+
+        <h1>New Dog</h1>
+        
+        <% if(messages.quote_errors != undefined) { %>
+          <% for (var x of messages.quote_errors) { %>
+            <h3><%= x %></h3>
+          <% } %>
+        <% } %>
+        <form action="/dogs" method="POST" class="col-md-12">
+            <div class="form-group">
+              <label for="name">Dogs Name:</label>
+              <input type="text"
+                class="form-control" name="name" id="name" aria-describedby="helpId" value="<%= dog.name %>">
+              <small id="helpId" class="form-text text-muted">Enter your dogs full name</small>
+            </div>
+            <div class="form-group">
+              <label for="quote">Breed:</label>
+              <input type="text"
+                class="form-control" name="breed" id="breed" aria-describedby="helpId" value="<%= dog.breed %>">
+              <small id="helpId" class="form-text text-muted">Provide their breed</small>
+            </div>
+            <div class="form-group">
+              <label for="quote">Color:</label>
+              <input type="text"
+                class="form-control" name="color" id="color" aria-describedby="helpId" value="<%= dog.color %>">
+              <small id="helpId" class="form-text text-muted">What color is the dog?</small>
+            </div>
+            <div class="form-group">
+              <label for="quote">Age:</label>
+              <input type="text"
+                class="form-control" name="age" id="age" aria-describedby="helpId" value="<%= dog.age %>">
+              <small id="helpId" class="form-text text-muted">How old is the dog</small>
+            </div> 
+            <a name="" id="" class="btn btn-primary" href="/" role="button">Back</a><button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
